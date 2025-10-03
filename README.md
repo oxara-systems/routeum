@@ -2,6 +2,10 @@
 
 Simple proc macro that brings [Actix Web](https://actix.rs/) style function attributes to [axum](https://github.com/tokio-rs/axum).
 
+- This currently requires `crate::State` to exist; This is the State used by your axum router
+
+## Example
+
 ```rust
 use axum::{Router, extract::Path, response::IntoResponse};
 
