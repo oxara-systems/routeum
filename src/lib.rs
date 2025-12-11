@@ -21,9 +21,10 @@ fn transform(method: &str, args: TokenStream, input: TokenStream) -> TokenStream
 
     let input = parse_macro_input!(input as ItemFn);
     let fn_name = input.sig.ident.clone();
+    let vis = input.vis.clone();
 
     TokenStream::from(quote! {
-        fn #fn_name(router: axum::Router<crate::State>) -> axum::Router<crate::State> {
+        #vis fn #fn_name(router: axum::Router<crate::State>) -> axum::Router<crate::State> {
             #input
             router.route(#path, axum::routing::#method(#fn_name))
         }
